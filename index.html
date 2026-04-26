@@ -2,14 +2,32 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Сайт</title>
+  <title>Запись клиентов</title>
 </head>
 <body>
 
 <h1>Онлайн-запись клиентов</h1>
-<p>Сайт работает</p>
-<a href="https://docs.google.com/spreadsheets/d/1gv4b22f5EzbSfCFIUoJ_v28DFMsBQwH-xy0TSS1E8MQ/edit?usp=sharing" target="_blank">
-  <button>Оставить заявку</button>
-</a>
+
+<input id="name" placeholder="Имя"><br><br>
+<input id="phone" placeholder="Телефон"><br><br>
+<input id="time" placeholder="Время"><br><br>
+
+<button onclick="send()">Отправить заявку</button>
+
+<script>
+function send() {
+  fetch("https://script.google.com/macros/s/AKfycbzdMV6r9X7YMTyWmsSfG1OetXcC-hPgldlm9C3opWgrRpgQ0b3dSu0egKXYReja3Bie/exec", {
+    method: "POST",
+    body: JSON.stringify({
+      name: document.getElementById("name").value,
+      phone: document.getElementById("phone").value,
+      time: document.getElementById("time").value
+    })
+  });
+
+  alert("Заявка отправлена!");
+}
+</script>
+
 </body>
 </html>
